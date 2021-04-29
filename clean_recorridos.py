@@ -8,8 +8,7 @@ with open('recorridos-realizados-2020.csv', newline='') as file, open('recorrido
         recorridos.write(
             f'{row["duracion_recorrido"]},{row["id_estacion_origen"]},'
             f'{row["fecha_origen_recorrido"]},{row["fecha_destino_recorrido"]},'
-            f'{row["id_estacion_destino"].split(".")[0] if "." in row["id_estacion_destino"] else row["id_estacion_destino"]},'
-            f'{row["id_usuario"]},{row["periodo"]}\n')
+            f'{int(float(row["id_estacion_destino"]))},{row["id_usuario"]},{row["periodo"]}\n')
 
 # 0 duracion_recorrido
 # 1 id_estacion_origen
