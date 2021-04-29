@@ -1,32 +1,34 @@
 import csv
 
+quote = "\""
+
 with open('recorridos-realizados-2020.csv') as file:
-    reader = csv.DictReader(file)
+    reader = csv.reader(file, quotechar='"')
+    next(file)
     dictionary = {}
     for row in reader:
-        if row['id_estacion_origen'] in dictionary:
+        if row[1] in dictionary:
             continue
-        dictionary[row['id_estacion_origen']
-                   ] = (f'{row["id_estacion_origen"]},{row["nombre_estacion_origen"]},'
-                        f'{row["direccion_estacion_origen"]},{row["long_estacion_origen"]},{row["lat_estacion_origen"]}')
+        dictionary[row[1]
+                   ] = (f'{row[1]},{quote+row[3]+quote if "," in row[3] else row[3]},'
+                        f'{quote+row[8]+quote if "," in row[8] else row[8]},{row[9]},{row[10]}')
     with open('estaciones.csv', 'w') as estaciones:
         estaciones.write('id,nombre,direccion,long,lat\n')
         for estacion in dictionary.values():
             estaciones.write(estacion + '\n')
 
-
-# duracion_recorrido
-# id_estacion_origen
-# fecha_origen_recorrido
-# nombre_estacion_origen
-# fecha_destino_recorrido
-# id_estacion_destino
-# nombre_estacion_destino
-# id_usuario
-# direccion_estacion_origen
-# long_estacion_origen
-# lat_estacion_origen
-# direccion_estacion_destino
-# long_estacion_destino
-# lat_estacion_destino
-# periodo
+# 0 duracion_recorrido
+# 1 id_estacion_origen
+# 2 fecha_origen_recorrido
+# 3 nombre_estacion_origen
+# 4 fecha_destino_recorrido
+# 5 id_estacion_destino
+# 6 nombre_estacion_destino
+# 7 id_usuario
+# 8 direccion_estacion_origen
+# 9 long_estacion_origen
+# 10 lat_estacion_origen
+# 11 direccion_estacion_destino
+# 12 long_estacion_destino
+# 13 lat_estacion_destino
+# 14 periodo

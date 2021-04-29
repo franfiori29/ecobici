@@ -5,3 +5,4 @@ with zipfile.ZipFile("recorridos-realizados-2020.zip", "r") as zip_ref:
 exec(open('generate_bicicletas.py').read())
 exec(open('generate_estaciones.py').read())
 exec(open('generate_usuarios.py').read())
+exec(open('clean_recorridos.py').read())
